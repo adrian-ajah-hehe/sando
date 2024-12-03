@@ -4,58 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Jual Sando Keren dengan Harga Terjangkau. Dapatkan koleksi sando berkualitas untuk penampilan stylish dan nyaman!">
-    <title>sando store</title>
+    <title>Sando Store</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: white;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
         }
         header {
             background-color: #333;
             color: white;
-            padding: 20px;
             text-align: center;
+            padding: 20px 0;
         }
         header h1 {
             margin: 0;
             font-size: 36px;
         }
+        header p {
+            margin: 5px 0 0;
+            font-size: 18px;
+        }
         nav {
             background-color: orange;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
             padding: 10px 0;
-            text-align: center;
+        }
+        nav a button {
+            background-color: white;
+            color: orange;
+            border: 2px solid orange;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        nav a button:hover {
+            background-color: #e64a19;
+            color: white;
         }
         .container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: center;
             padding: 20px;
+            gap: 20px;
         }
         .product-card {
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin:50%;
-            width: 250px;
-            margin: 15px;
+            width: 300px;
             text-align: center;
             overflow: hidden;
         }
         .product-card img {
             width: 100%;
             height: auto;
-            border-bottom: 1px solid white;
+            border-bottom: 1px solid #ddd;
         }
         .product-card h3 {
-            margin: 10px 0;
-            font-size: 22px;
-            color: green;
+            margin: 15px 0 10px;
+            font-size: 24px;
+            color: #333;
         }
         .product-card p {
             font-size: 16px;
-            color: green;
+            color: #666;
+            margin: 0 15px 10px;
         }
         .product-card .price {
             font-size: 20px;
@@ -64,43 +84,42 @@
         }
         .product-card button {
             background-color: orange;
-            color: black;
+            color: white;
             border: none;
             padding: 10px;
             font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
-            width: 100%;
+            width: 90%;
+            margin: 10px 5%;
         }
         .product-card button:hover {
             background-color: #e64a19;
-        }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>SANDO STORE</h1>
-    <p> Selamat datang di SANDO STORE</p>
+    <h1>STAR SANDWICH</h1>
+    <p>Selamat datang di STAR SANDWICH</p>
 </header>
 
-<div class="poto">
-    <img scr="IMG-20241129-WA0304.jpg">
-</div>
 <nav>
     <a href="https://maps.app.goo.gl/QjcStf7sAFq32tWw5"><button>ALAMAT</button></a>
-    <a href="https://www.instagram.com/zenn_2222/#"><button>instagram</button></a>
+    <a href="https://www.instagram.com/zenn_2222/"><button>Instagram</button></a>
 </nav>
 
+<div class="container">
     <div class="product-card">
         <img src="https://asset.kompas.com/crops/I0LNG5jbTb-iWN7lf46UQGj9B90=/0x40:826x590/1200x800/data/photo/2022/12/21/63a24035df455.jpeg" alt="Sando B">
         <h3>SANDO</h3>
         <p>RASANYA DI JAMIN ENAK</p>
-        <p class="price">Rp 5000</p>
-        <a href="   https://api.whatsapp.com/send/?phone=%2B6285770903556&text&type=phone_number&app_absent=0"=><button>BELI</button></a>
-    </div>
+        <p class="price">Rp 5.000</p>
+        <a href="https://api.whatsapp.com/send/?phone=%2B6285770903556&text&type=phone_number&app_absent=0"><button>BELI</button></a>
     </div>
 </div>
+
 </body>
 </html>
+
