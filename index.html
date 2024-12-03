@@ -6,11 +6,13 @@
     <meta name="description" content="Jual Sando Keren dengan Harga Terjangkau. Dapatkan koleksi sando berkualitas untuk penampilan stylish dan nyaman!">
     <title>Sando Store</title>
     <style>
+        /* Reset dasar */
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
         header {
             background-color: #333;
@@ -21,10 +23,12 @@
         header h1 {
             margin: 0;
             font-size: 36px;
+            animation: fadeInDown 1s ease-out;
         }
         header p {
             margin: 5px 0 0;
             font-size: 18px;
+            animation: fadeInDown 1.5s ease-out;
         }
         nav {
             background-color: orange;
@@ -32,6 +36,7 @@
             justify-content: center;
             gap: 15px;
             padding: 10px 0;
+            animation: fadeIn 1s ease-out;
         }
         nav a button {
             background-color: white;
@@ -42,6 +47,7 @@
             cursor: pointer;
             border-radius: 5px;
             font-weight: bold;
+            transition: all 0.3s ease;
         }
         nav a button:hover {
             background-color: #e64a19;
@@ -61,6 +67,12 @@
             width: 300px;
             text-align: center;
             overflow: hidden;
+            transform: scale(0.9);
+            animation: slideIn 1s ease-out forwards;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+            transition: all 0.3s ease;
         }
         .product-card img {
             width: 100%;
@@ -96,13 +108,43 @@
         .product-card button:hover {
             background-color: #e64a19;
         }
+
+        /* Animasi */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
 
 <header>
     <h1>STAR SANDWICH</h1>
-    <p>Selamat datang di STAR SANDWICH</p>
+    <p>Selamat datang di STAR SANDWICH - Pusatnya cemilan enak dan terjangkau!</p>
 </header>
 
 <nav>
@@ -114,9 +156,9 @@
     <div class="product-card">
         <img src="https://asset.kompas.com/crops/I0LNG5jbTb-iWN7lf46UQGj9B90=/0x40:826x590/1200x800/data/photo/2022/12/21/63a24035df455.jpeg" alt="Sando B">
         <h3>SANDO</h3>
-        <p>RASANYA DI JAMIN ENAK</p>
+        <p>RASANYA DI JAMIN ENAK, dengan roti lembut dan isi yang melimpah.</p>
         <p class="price">Rp 5.000</p>
-        <a href="https://api.whatsapp.com/send/?phone=%2B6285770903556&text&type=phone_number&app_absent=0"><button>BELI</button></a>
+        <a href="https://api.whatsapp.com/send/?phone=%2B6285770903556&text=Halo,%20saya%20ingin%20memesan%20Sando!&app_absent=0"><button>BELI</button></a>
     </div>
 </div>
 
