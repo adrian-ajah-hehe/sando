@@ -203,7 +203,7 @@
         <button onclick="checkout()" style="margin-top: 1rem; background-color:#25d366; color:white; border:none; padding:0.5rem 1rem; border-radius:5px; cursor:pointer;">Checkout</button>
       </div>
     </div>
-    <h1>Star Sandwich</h1>
+    <h1 id="judul">Star Sandwich</h1>
     <p>Sandwich segar, lezat, dan siap dinikmati kapan saja!</p>
   </header>
 
@@ -213,6 +213,7 @@
   </nav>
 
   <main class="container" id="produk">
+    <!-- Produk 1 -->
     <div class="product">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlIpCftLKz18Ao7DHBNPhGGgOQqXnUHnTqPQ&s" alt="Sandwich Anggur" />
       <div class="product-info">
@@ -221,6 +222,7 @@
         <button onclick="pesan('Sandwich Anggur')">Pesan Sekarang</button>
       </div>
     </div>
+    <!-- Produk 2 -->
     <div class="product">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWN4TiW1Fca3eF12kmqfQUdWChANVFQVe4Xg&s" alt="Sandwich Pisang" />
       <div class="product-info">
@@ -229,6 +231,7 @@
         <button onclick="pesan('Sandwich Pisang')">Pesan Sekarang</button>
       </div>
     </div>
+    <!-- Produk 3 -->
     <div class="product">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQDqEdpFUcxvJsGsoEB9B34eSwsJ_CX2OOlQ&s" alt="Sandwich Strawberry" />
       <div class="product-info">
@@ -237,6 +240,7 @@
         <button onclick="pesan('Sandwich Strawberry')">Pesan Sekarang</button>
       </div>
     </div>
+    <!-- Produk 4 -->
     <div class="product">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc14Uhdzbcn1HHi1IEX2gc79aJUZOFdSisYg&s" alt="Sandwich MIX" />
       <div class="product-info">
@@ -261,84 +265,84 @@
       <a href="https://tiktok.com/@starsandwich" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" /></a>
     </div>
   </footer>
-    <script>
+
+  <script>
     let cartItems = {};
-let metodePembayaran = "";
+    let metodePembayaran = "";
 
-function pesan(namaProduk) {
-  if (!cartItems[namaProduk]) cartItems[namaProduk] = 0;
+    function pesan(namaProduk) {
+      if (!cartItems[namaProduk]) cartItems[namaProduk] = 0;
+      if (cartItems[namaProduk] >= 30) {
+        alert(`Maksimal 30 untuk produk ${namaProduk}.`);
+        return;
+      }
+      cartItems[namaProduk]++;
+      updateCartUI();
+    }
 
-  if (cartItems[namaProduk] >= 30) {
-    alert(`Maksimal 30 untuk produk ${namaProduk}.`);
-    return;
-  }
+    function ubahQty(nama, delta) {
+      if (!cartItems[nama]) return;
+      if (delta > 0 && cartItems[nama] >= 30) {
+        alert(`Maksimal 30 untuk produk ${nama}.`);
+        return;
+      }
+      cartItems[nama] += delta;
+      if (cartItems[nama] <= 0) delete cartItems[nama];
+      updateCartUI();
+    }
 
-  cartItems[namaProduk]++;
-  updateCartUI();
-}
+    function updateCartUI() {
+      document.getElementById("cart-count").innerText = Object.values(cartItems).reduce((a, b) => a + b, 0);
+      const list = document.getElementById("cart-items");
+      list.innerHTML = "";
+      Object.entries(cartItems).forEach(([nama, qty]) => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${nama}</strong><br>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="ubahQty('${nama}', -1)">−</button>
+            <span>${qty}</span>
+            <button class="qty-btn" onclick="ubahQty('${nama}', 1)">+</button>
+          </div>`;
+        list.appendChild(li);
+      });
+    }
 
-function ubahQty(nama, delta) {
-  if (!cartItems[nama]) return;
+    function pilihMetode(checkbox) {
+      document.querySelectorAll('input[name="payment"]').forEach(cb => {
+        if (cb !== checkbox) cb.checked = false;
+      });
+      metodePembayaran = checkbox.checked ? checkbox.value : "";
+    }
 
-  if (delta > 0 && cartItems[nama] >= 30) {
-    alert(`Maksimal 30 untuk produk ${nama}.`);
-    return;
-  }
+    function checkout() {
+      const totalQty = Object.values(cartItems).reduce((a, b) => a + b, 0);
+      if (totalQty === 0) return alert("Keranjang masih kosong!");
+      if (!metodePembayaran) return alert("Pilih metode pembayaran terlebih dahulu.");
+      const hargaSatuan = 7000;
+      const pesanText = Object.entries(cartItems)
+        .map(([item, qty]) => `- ${item} x${qty}`)
+        .join("\n");
+      const total = totalQty * hargaSatuan;
+      const pesan = `Halo, saya ingin memesan:\n\n${pesanText}\n\nTotal: Rp${total}\nMetode Pembayaran: ${metodePembayaran}\n\nTerima kasih!`;
+      const encoded = encodeURIComponent(pesan);
+      window.open(`https://wa.me/6285770903556?text=${encoded}`, "_blank");
+    }
 
-  cartItems[nama] += delta;
-  if (cartItems[nama] <= 0) delete cartItems[nama];
-  updateCartUI();
-}
-
-function updateCartUI() {
-  document.getElementById("cart-count").innerText = Object.values(cartItems).reduce((a, b) => a + b, 0);
-  const list = document.getElementById("cart-items");
-  list.innerHTML = "";
-  Object.entries(cartItems).forEach(([nama, qty]) => {
-    const li = document.createElement("li");
-    li.innerHTML = `<strong>${nama}</strong><br>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="ubahQty('${nama}', -1)">−</button>
-        <span>${qty}</span>
-        <button class="qty-btn" onclick="ubahQty('${nama}', 1)">+</button>
-      </div>`;
-    list.appendChild(li);
-  });
-}
-
-function pilihMetode(checkbox) {
-  document.querySelectorAll('input[name="payment"]').forEach(cb => {
-    if (cb !== checkbox) cb.checked = false;
-  });
-  metodePembayaran = checkbox.checked ? checkbox.value : "";
-}
-
-function checkout() {
-  const totalQty = Object.values(cartItems).reduce((a, b) => a + b, 0);
-  if (totalQty === 0) return alert("Keranjang masih kosong!");
-  if (!metodePembayaran) return alert("Pilih metode pembayaran terlebih dahulu.");
-  const hargaSatuan = 7000;
-  const pesanText = Object.entries(cartItems).map(([item, qty]) => `- ${item} x${qty}`).join("\n");
-  const total = totalQty * hargaSatuan;
-  const pesan = `Halo, saya ingin memesan:\n\n${pesanText}\n\nTotal: Rp${total}\nMetode Pembayaran: ${metodePembayaran}\n\nTerima kasih!`;
-  const encoded = encodeURIComponent(pesan);
-  window.open(`https://wa.me/6285770903556?text=${encoded}`, "_blank");
-}
-      
-document.querySelector(".cart-icon").addEventListener("click", () => {
-  document.getElementById("cart-details").classList.toggle("show");
-});
-document.addEventListener("click", function (e) {
-  const cartIcon = document.querySelector(".cart-icon");
-  const cartDetails = document.getElementById("cart-details");
-  const isClickInsideCart =
-    cartDetails.contains(e.target) ||
-    cartIcon.contains(e.target) ||
-    e.target.classList.contains("qty-btn");
-  if (!isClickInsideCart) {
-    cartDetails.classList.remove("show");
-  }
-});
-</script>
+    // Toggle keranjang
+    document.querySelector(".cart-icon").addEventListener("click", () => {
+      document.getElementById("cart-details").classList.toggle("show");
+    });
+    document.addEventListener("click", function (e) {
+      const cartIcon = document.querySelector(".cart-icon");
+      const cartDetails = document.getElementById("cart-details");
+      const isClickInsideCart =
+        cartDetails.contains(e.target) ||
+        cartIcon.contains(e.target) ||
+        e.target.classList.contains("qty-btn");
+      if (!isClickInsideCart) {
+        cartDetails.classList.remove("show");
+      }
+    });
+  </script>
 </body>
 </html>
