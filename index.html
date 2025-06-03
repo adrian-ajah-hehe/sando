@@ -213,7 +213,6 @@
   </nav>
 
   <main class="container" id="produk">
-    <!-- Produk 1 -->
     <div class="product">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlIpCftLKz18Ao7DHBNPhGGgOQqXnUHnTqPQ&s" alt="Sandwich Anggur" />
       <div class="product-info">
@@ -222,7 +221,6 @@
         <button onclick="pesan('Sandwich Anggur')">Pesan Sekarang</button>
       </div>
     </div>
-    <!-- Produk 2 -->
     <div class="product">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWN4TiW1Fca3eF12kmqfQUdWChANVFQVe4Xg&s" alt="Sandwich Pisang" />
       <div class="product-info">
@@ -231,7 +229,6 @@
         <button onclick="pesan('Sandwich Pisang')">Pesan Sekarang</button>
       </div>
     </div>
-    <!-- Produk 3 -->
     <div class="product">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQDqEdpFUcxvJsGsoEB9B34eSwsJ_CX2OOlQ&s" alt="Sandwich Strawberry" />
       <div class="product-info">
@@ -240,7 +237,6 @@
         <button onclick="pesan('Sandwich Strawberry')">Pesan Sekarang</button>
       </div>
     </div>
-    <!-- Produk 4 -->
     <div class="product">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc14Uhdzbcn1HHi1IEX2gc79aJUZOFdSisYg&s" alt="Sandwich MIX" />
       <div class="product-info">
@@ -327,8 +323,6 @@
       const encoded = encodeURIComponent(pesan);
       window.open(`https://wa.me/6285770903556?text=${encoded}`, "_blank");
     }
-
-    // Toggle keranjang
     document.querySelector(".cart-icon").addEventListener("click", () => {
       document.getElementById("cart-details").classList.toggle("show");
     });
